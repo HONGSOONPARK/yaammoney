@@ -1,0 +1,51 @@
+
+DROP TABLE list;
+DROP TABLE history;
+
+CREATE TABLE list(
+ list_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '고유번호',
+ name VARCHAR(20) NOT NULL COMMENT  '식당이름',
+ code1 INT COMMENT '분류번호1',
+ code2 INT COMMENT '분류번호2',
+ code3 INT COMMENT '분류번호3'
+ );
+
+
+CREATE TABLE history(
+ history_no INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '고유번호',
+ list_no INT NOT NULL COMMENT  'list 번호',
+ date  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT  '이용일자'
+ );
+
+
+INSERT INTO list(name) values ('이치하루');
+INSERT INTO list(name) values ('홍신각');
+INSERT INTO list(name) values ('진국수');
+INSERT INTO list(name) values ('초밥사랑');
+INSERT INTO list(name) values ('밀당');
+
+commit;
+
+
+INSERT INTO history(list_no, date) values (1, now());
+
+
+SELECT 
+A.name, B.date
+ FROM list AS A LEFT JOIN history AS B 
+ ON A.list_no = B.list_no 
+ WHERE B.date < date_add(now(), interval-7 day)
+ or B.date is null
+ORDER BY RAND() LIMIT 3;
+
+SELECT 
+A.list_no, A.name,
+ FROM list A
+ORDER BY A.list_no asc;
+
+INSERT INTO list(name) values ('name');
+
+
+
+delete FROM history where DATE_FORMAT(date,'%Y%m%d') = DATE_FORMAT(now(),'%Y%m%d');
+

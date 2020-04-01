@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 오늘 뭐먹지
+
+  p 추천식당 
+    each value, i in recommend_list
+      p=i+1 +'.'+value.name
+        button(onclick='check('+value.list_no+',"'+value.name+'")') Check
+
+  button(onclick='refresh()') 맘에 안들어
+  button(onclick='clean()') 오늘 선택한거 초기화
+  //- button(onclick='add()') 식당추가
+  
+  hr
+
+  p 전체 리스트
+  each value, i in list
+    p= value.list_no+' | '+value.name
+
+

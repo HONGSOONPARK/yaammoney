@@ -46,3 +46,6 @@ ORDER BY A.list_no asc;
 INSERT INTO list(name) values ('name');
 
 
+
+delete FROM history where DATE_FORMAT(date,'%Y%m%d') = DATE_FORMAT(now(),'%Y%m%d');
+

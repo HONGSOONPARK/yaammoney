@@ -8,16 +8,9 @@ block content
       p=i+1 +'.'+value.name
         button(onclick='check('+value.list_no+',"'+value.name+'")') Check
 
-        script(type='text/javascript').
-          var check = function(list_no, name) {
-            
-            location.href = '/check?list_no='+list_no+'&name='+name;
-
-          }
-
-
   button(onclick='refresh()') 맘에 안들어
-  button(onclick='add()') 식당추가
+  button(onclick='clean()') 오늘 선택한거 초기화
+  //- button(onclick='add()') 식당추가
   
   hr
 

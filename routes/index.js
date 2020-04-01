@@ -24,18 +24,12 @@ router.get('/', function(req, res, next) {
   A.list_no, A.name
    FROM list A
   ORDER BY A.list_no asc;`;
+
   connection.query(sql1 + sql2, params, function (error, results, fields){
 
     if (!error) {
-
       console.log('first');
-      // for (var i = 0; i < results[0].length; i++) {
-      //   console.log(results[0][i]);
-      // }
-
       res.render('index', {recommend_list: results[0], list: results[1]});
-      
-      
     }else{
       console.log('query error : ' + error);
     }
@@ -52,12 +46,28 @@ router.get('/check', function(req, res, next) {
 
   console.log('query req  : ' + req.query.list_no);
 
-  //var sql1 = `INSERT INTO list(name) values (`+req.name+`)`;
-
   var sql1 = `INSERT INTO history(list_no, date) values (`+req.query.list_no+`, now())`;
   connection.query(sql1, function (error, results, fields){
     if (!error) {
       console.log("1 record inserted");
+    }else{
+      console.log('query error : ' + error);
+    }
+  });
+
+  res.redirect('/');
+
+});
+
+
+/* GET Clear */
+router.get('/clean', function(req, res, next) {
+
+  console.log('query req  : ');
+  var sql1 = `delete FROM history where DATE_FORMAT(date,'%Y%m%d') = DATE_FORMAT(now(),'%Y%m%d')`;
+  connection.query(sql1, function (error, results, fields){
+    if (!error) {
+      console.log("1 record deleted");
     }else{
       console.log('query error : ' + error);
     }

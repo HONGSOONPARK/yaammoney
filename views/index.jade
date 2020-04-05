@@ -3,19 +3,40 @@ extends layout
 block content
   h1 오늘 뭐먹지
 
-  p 추천식당 
+  p 추천
     each value, i in recommend_list
-      p=i+1 +'.'+value.name
-        button(onclick='check('+value.list_no+',"'+value.name+'")') Check
+      p=i+1 +'.'+value.name+' | '
+        button(onclick='check('+value.list_no+',"'+value.name+'")') 여기갈래
 
-  button(onclick='refresh()') 맘에 안들어
-  button(onclick='clean()') 오늘 선택한거 초기화
-  //- button(onclick='add()') 식당추가
-  
+    hr
+    p
+      button(onclick='refresh()') 다시 뽑기
+    p
+      button(onclick='clean()') 오늘 선택한거 취소
+
+    p 
+      input(placeholder='식당이름' id='name')
+      button(onclick='add()') 식당추가
+
   hr
 
-  p 전체 리스트
+  p 제외 식당(7일 이내 방문한 곳)
+  div
+  table
+    thead
+      tr: th 식당
+          th 방문일
+
+        tbody
+          each value, i in except_list
+            tr
+              td=value.name
+              td=value.date
+  
+  hr
+  p 전체 리스트&nbsp;(이름 클릭시 삭제)
+
+  div
   each value, i in list
-    p= value.list_no+' | '+value.name
-
-
+    span
+      button(onclick='drop('+value.list_no+')')= value.name + '\n'

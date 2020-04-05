@@ -45,7 +45,16 @@ ORDER BY A.list_no asc;
 
 INSERT INTO list(name) values ('name');
 
-
-
 delete FROM history where DATE_FORMAT(date,'%Y%m%d') = DATE_FORMAT(now(),'%Y%m%d');
 
+SELECT A.list_no, A.name, B.date 
+  FROM list AS A LEFT JOIN history AS B
+  ON A.list_no = B.list_no 
+  WHERE date_add(B.date, interval-7 day)
+        OR B.date is not null;
+
+
+
+INSERT INTO history(list_no, date) values (35, now());
+
+DELETE A,B FROM list AS A LEFT JOIN history AS B ON A.list_no = B.list_no  WHERE A.list_no = 35;

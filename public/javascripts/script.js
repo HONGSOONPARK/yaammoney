@@ -14,15 +14,14 @@ var clean = function() {
 var add = function() {
     var name = document.getElementById('name').value;
     if(name != ''){
-        if(confirm('식당 : '+name+' 추가하시겠습니까?'))
-            location.href = '/add?name='+name;
+        location.href = '/add?name='+name;
     }else{
-        alert('이름 추가하세요');
+        alert('공백');
+        //document.getElementById('alert-text').classList.add('show');
     }
-       
-    
 }
 
 var drop = function(list_no) {
     location.href = '/drop?list_no='+list_no;
 }
+

@@ -1,42 +1,106 @@
 extends layout
 
 block content
-  h1 오늘 뭐먹지
 
-  p 추천
-    each value, i in recommend_list
-      p=i+1 +'.'+value.name+' | '
-        button(onclick='check('+value.list_no+',"'+value.name+'")') 여기갈래
+  // 색깔 랜덤
+  - var color = ['btn-primary','btn-secondary','btn-success','btn-danger','btn-info','btn-light','btn-danger']
 
-    hr
-    p
-      button(onclick='refresh()') 다시 뽑기
-    p
-      button(onclick='clean()') 오늘 선택한거 취소
+  // 상단
+  div.jumbotron
+    button#eat-today.btn.btn-primary.btn-lg.btn-block 오늘 뭐먹지
 
-    p 
-      input(placeholder='식당이름' id='name')
-      button(onclick='add()') 식당추가
+  // 네비게이션 탭
+  ul.nav.nav-tabs
+    li.nav-item
+      a(href='#home',data-toggle='tab').nav-link.active목록 
+    li.nav-item
+      a(href='#', data-toggle='modal', data-target='#add-modal').nav-link 식당 추가
 
-  hr
-
-  p 제외 식당(7일 이내 방문한 곳)
-  div
-  table
-    thead
-      tr: th 식당
-          th 방문일
-
-        tbody
-          each value, i in except_list
-            tr
-              td=value.name
-              td=value.date
-  
-  hr
-  p 전체 리스트&nbsp;(이름 클릭시 삭제)
-
-  div
+  // 탭 내용
+  div#myTabContent.tab-content
+    div#home.tab-pane.fade.active.show
+  // 식당 목록
   each value, i in list
-    span
-      button(onclick='drop('+value.list_no+')')= value.name + '\n'
+    - var num = Math.floor(Math.random() * (8 - 0)) + 0
+      button#store-badge.btn(class=color[num])=value.name
+
+  // 식당 추가 Modal
+  div#add-modal(tabindex="-1",role="dialog",aria-labelledby="example").modal.fade
+    div(role="document").modal-dialog
+      div.modal-content
+        div.modal-header
+          h5#exampleModalLabel.modal-title 식당 추가
+          button(data-dismiss='modal', aria-label='Close').close
+            span(aria-hidden="true") &times;
+
+        div.modal-body
+          //label(for='name').col-form-label 식당추가
+          div.form-group
+            textarea(maxlength='20')#name.form-control
+          //- div#alert-text(role='alert', data-dismiss='alert').alert.alert-warning.alert-dismissible.fade.show 데이터 넣어줄것ㅎ
+          //-   button(aria-label='Close').close
+          //-     span(aria-hidden='true') &times;
+        div.modal-footer
+          button(data-dismiss='modal').btn.btn-secondary 취소
+          button(onclick='add()').btn.btn-primary 저장
+
+        
+
+
+        //- div#modal-alert(role='alert', aria-live='assertive', aria-atomic='true').toast.show
+        //-   div.toast-header
+        //-     strong.mr-auto Bootstrap
+        //-     button(data-dismiss='toast',aria-label='Close').ml-2.mb-1.close
+        
+        //-   div.toast-body
+        //-     Hello, world! This is a toast message.
+        
+
+
+  //-         
+  //-           tr
+  //-             td=value.name
+  //-             td=value.date
+
+  //- each value, i in list
+  //-   div(style='max-width: 20rem;').card.text-white.bg-primary.mb-3
+  //-     div.card-body
+  //-       h2.card-title=value.name
+
+  //- p 추천
+  //-   each value, i in recommend_list
+  //-     p=i+1 +'.'+value.name+' | '
+  //-       button(onclick='check('+value.list_no+',"'+value.name+'")') 여기갈래
+
+  //-   hr
+  //-   p
+  //-     button(onclick='refresh()') 다시 뽑기
+  //-   p
+  //-     button(onclick='clean()') 오늘 선택한거 취소
+
+  //-   p 
+  //-     input(placeholder='식당이름' id='name')
+  //-     button(onclick='add()') 식당추가
+
+  //- hr
+
+  //- p 제외 식당(7일 이내 방문한 곳)
+  //- div
+  //- table
+  //-   thead
+  //-     tr: th 식당
+  //-         th 방문일
+
+  //-       tbody
+  //-         each value, i in except_list
+  //-           tr
+  //-             td=value.name
+  //-             td=value.date
+  
+  //- hr
+  //- p 전체 리스트&nbsp;(이름 클릭시 삭제)
+
+  //- div
+  //- each value, i in list
+  //-   span
+  //-     button(onclick='drop('+value.list_no+')')= value.name + '\n'

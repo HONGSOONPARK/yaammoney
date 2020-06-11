@@ -25,3 +25,4 @@ var drop = function(list_no) {
     location.href = '/drop?list_no='+list_no;
 }
 
+

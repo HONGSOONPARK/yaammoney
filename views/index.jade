@@ -20,9 +20,17 @@ block content
   div#myTabContent.tab-content
     div#home.tab-pane.fade.active.show
   // 식당 목록
+
+  - var num = 0
   each value, i in list
-    - var num = Math.floor(Math.random() * (8 - 0)) + 0
-      button#store-badge.btn(class=color[num])=value.name
+    //- var num = Math.floor(Math.random() * (8 - 0)) + 0
+    button#store-badge.btn(class=color[num])=value.name
+    - if(i!=0 && i%10==0)
+      - num++
+        - if(num > 6)
+          - num = 0 
+
+    
 
   // 식당 추가 Modal
   div#add-modal(tabindex="-1",role="dialog",aria-labelledby="example").modal.fade
@@ -45,6 +53,11 @@ block content
           button(onclick='add()').btn.btn-primary 저장
 
         
+    
+
+
+
+
 
 
         //- div#modal-alert(role='alert', aria-live='assertive', aria-atomic='true').toast.show

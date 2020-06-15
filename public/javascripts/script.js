@@ -22,7 +22,8 @@ var add = function() {
 }
 
 var drop = function(list_no) {
-    location.href = '/drop?list_no='+list_no;
+    if(confirm("삭제하시겠습니까"))
+        location.href = '/drop?list_no='+list_no;
 }
 
 

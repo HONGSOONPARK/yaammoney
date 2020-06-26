@@ -6,7 +6,7 @@ block content
   - var color = ['btn-primary','btn-secondary','btn-success','btn-danger','btn-info','btn-light','btn-danger']
 
   // 상단
-  div.jumbotron
+  div.jumbotron#eat-div
     button#eat-today.btn.btn-primary.btn-lg.btn-block 오늘 뭐먹지
 
   // 네비게이션 탭
@@ -24,12 +24,11 @@ block content
   - var num = 0
   each value, i in list
     //- var num = Math.floor(Math.random() * (8 - 0)) + 0
-    button#store-badge.btn(class=color[num])=value.name
+    button#store-badge.btn(class=color[num], onclick='drop('+value.list_no+')')=value.name
     - if(i!=0 && i%10==0)
       - num++
         - if(num > 6)
           - num = 0 
-
     
 
   // 식당 추가 Modal

@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -7,13 +7,18 @@ a {
   color: #00B7FF;
 }
 
-
 #store-badge{
-  font-size:2rem; 
-  margin:0.5rem; 
-  padding:1rem 2rem 1rem 2rem;
+  font-size:1.5rem; 
+  margin:0.3rem; 
+  padding:0.6rem 1.5rem 0.6rem 1.5rem;
 }
 
 #eat-today{
   font-size:4rem; 
+  height:10rem; 
+}
+#eat-div{
+margin-top:5.5rem;
+margin-bottom:5.5rem;
+
 }

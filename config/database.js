@@ -4,7 +4,7 @@ module.exports = function () {
   return {
     init: function () {
       return mysql.createConnection({
-        host: 'rasb',
+        host: 'localhost',
         port: '3306',
         user: 'test',
         password: 'test@@oper',

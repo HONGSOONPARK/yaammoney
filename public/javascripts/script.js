@@ -22,15 +22,10 @@ var add = function() {
 }
 
 var drop = function(list_no) {
-<<<<<<< HEAD
  
 if(confirm('삭제하시겠습니까?'))
    location.href = '/drop?list_no='+list_no;
 
-=======
-    if(confirm("삭제하시겠습니까"))
-        location.href = '/drop?list_no='+list_no;
->>>>>>> 1c16e48942e96403e58d5752632ff552e7eeab95
 }
 
 
